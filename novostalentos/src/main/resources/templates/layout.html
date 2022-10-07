@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org">
+<head th:fragment="head">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}">
+    <title>Layout</title>
+</head>
+    <body>
+        <nav th:fragment="menu" class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar/Menu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="#">Home/Início</a>
+                <a class="nav-link" href="#">Features/recursos</a>
+                <a class="nav-link" href="#">Services/serviços</a>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <footer th:fragment="footer">
+            <script th:src="@{/webjars/jquery/3.6.1/dist/jquery.min.js}"></script> <!--esse script é para possibilitar o uso da biblioteca jquery-->
+            <script th:src="@{/webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script> <!--esse script é para possibilitar o uso da biblioteca jquery-->
+        </footer>
+    </body>
+</html>

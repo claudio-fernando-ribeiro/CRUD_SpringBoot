@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org">
+    <head th:include="layout :: head"></head> <!--include inclui o arquivo que existe no meu layout-->
+
+    <body>
+        <nav th:replace="layout :: menu"></nav> <!--replace substitui totalmente-->
+            <main class="container">
+                <form th:action="@{/cidades(form)}" method="POST" th:object="${cidade}">
+                    <input type="hidden" th:field="*{id}">
+                    <div class="form-group">
+                        <label for="txtnome">Novo:</label>
+                        <input type="text" th:field="*{nome}" class="form-control" id="txtnome"> 
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </main>
+            <footer th:include="layout :: footer"></footer>
+    </body>
+</html>

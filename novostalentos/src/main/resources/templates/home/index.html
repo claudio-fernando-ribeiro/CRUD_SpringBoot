@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"></html><!--Aqui é a importação da lib th-->
+
+        <head th:include="layout :: head"></head> <!--include inclui o arquivo que existe no meu layout-->
+
+        <body>
+            <nav th:replace="layout :: menu"></nav> <!--replace substitui totalmente-->
+            <main class="container">
+
+
+            </main>
+            <!--<p th:text="${valor}" class="btn btn-primary"></p>  Aqui esotu informando que ele deve usar 
+            o atributo "text" da lib th-->
+            <!-- IMPORTANTE: toda vez que a informação vem do Java, uso o "th:" na frente.-->        
+        </body>
+        <footer th:include="layout :: footer"></footer>
+    </html>
