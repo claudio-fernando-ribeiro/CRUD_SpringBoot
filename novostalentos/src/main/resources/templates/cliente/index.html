@@ -9,13 +9,14 @@
         <main class="container">
             
             <a href="/clientes/novo" class="btn btn-primary">Novo</a>
-            <table class="table" id="tabclientes">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Nome</th>
                         <th>Endereço</th>
                         <th>Sexo</th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -32,26 +33,25 @@
                     </tr>
                 </tbody>
             </table>
-
         </main>
 
-        <div class="modal" tabindex="-1" id="modalcliente"> <!--Modal no Bootstrap é uma tela de aviso-->
+        <div class="modal" tabindex="-1" id="modalcliente"> <!--Modal no bootstrap é uma tela de aviso-->
             <div class="modal-dialog">
-                <div class="modal-content">
+              <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Excluir Cliente</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <h5 class="modal-title">Excluir cliente</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Confirma a exclusão do cliente?</p>
+                  <p>Confirma a exclusão do cliente?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="btnnao" data-bs-dismiss="modal">Não</button>
-                    <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+                  <button type="button" class="btn btn-secondary" id="btnnao" data-bs-dismiss="modal">Não</button>
+                  <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
                 </div>
-                </div>
+              </div>
             </div>
-        </div>
+          </div>
 
         <footer th:include="layout :: footer"></footer>
         <script th:src="@{/script.js}"></script>
