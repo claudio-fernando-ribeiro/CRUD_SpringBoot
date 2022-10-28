@@ -7,4 +7,5 @@ public interface ClienteService { //A interface serve quando eu criar um padrão
     List<Cliente> getAll();
     Cliente save(Cliente cliente);
     Cliente findById(long id);
+    void delete(long id);
 }

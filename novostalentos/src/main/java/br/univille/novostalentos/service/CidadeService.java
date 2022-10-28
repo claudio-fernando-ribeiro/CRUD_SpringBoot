@@ -7,4 +7,5 @@ public interface CidadeService { //Esse método oferece um método na camada de 
     List<Cidade> getAll();
     Cidade save(Cidade cidade);
     Cidade findById(long id);
+    void delete(long id);
 }

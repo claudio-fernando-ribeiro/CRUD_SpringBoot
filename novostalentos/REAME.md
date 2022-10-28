@@ -61,7 +61,7 @@ Ferramente de acelaração de inicialização de um projeto utilizando o Spring 
 Opção 2 - Acessar o site https://mvnrepository.com/
     - Procurar a dependência, copiar o xml, copiar o xml e colar no arquivo POM.
 
-## Como repetir o mesmo laytou (menu) em todas as páginas?
+## Como repetir o mesmo layout (menu) em todas as páginas?
     - Criar um arquivo "layout.html" dentro da pasta :./resources/templates/.
 criar a estrutura do html5.
     - Dentro da tag que deve ser repetida (no meu caso usei o Navbar do bootstrap), inserir _th:fragment="menu"_(menu é uma variável).

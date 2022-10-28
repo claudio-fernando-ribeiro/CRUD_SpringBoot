@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org">
+    <head th:include="layout :: head"></head>
+    <body>
+        <nav th:replace="layout :: menu"></nav>
+        <main class="container">
+            <form th:action="@{/vendas/(form)}" method="POST" th:object="${venda}">
+                <input type="hidden" th:field="*{id}">
+
+                <!--<div class="form-group">     form-group e form-control são classes do bootstrap, responsáveis por estilizar o formulário
+                    <label for="txtnome">Id</label>
+                    <input type="text" th:field="*{nome}" class="form-control" id="txtnome">-->
+
+                </div>
+                <div class="form-group">
+                    <label for="txtData">Data da Venda:</label>
+                    <input type="date" th:field="*{data}" 
+                    class="form-control" id="txtData">
+                    <!--<p th:if="${#fields.hasErrors('data')}"
+                    th:errors="*{data}"
+                    class="alert alert-danger"></p>-->
+                </div>
+
+                <div class="form-group">
+                    <label for="cbcidade">Cliente:</label>
+                    <select class="form-select" th:field="*{comprador}">
+                        <option th:each="umCliente : ${listaClientes}"
+                        th:text="${umCliente.nome}"
+                        th:value="${umCliente.id}"></option>
+                    </select>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Itens de venda vinculados
+                        </h5>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Produto</th>
+                                    <th>Quantidade</th>
+                                    <th>Valor unitário</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="umItem, stat : *{colItens}"> <!--Esse novo código (stat) serve para não apagar a variável local que foi inserida dentro do ArrayList(Controller), e assim poder salvar ela no BD e mostrar ao usuário após o cadastro  -->
+                                    <td th:text="${umItem.produto?.nome}"></td>
+                                    <input type="hidden" th:field="*{colItens[__${stat.index}__].produto}">
+                                    <td th:text="${umItem.quantidade}"></td>
+                                    <input type="hidden" th:field="*{colItens[__${stat.index}__].quantidade}">
+                                    <td th:text="${umItem.valorVenda}"></td>
+                                    <input type="hidden" th:field="*{colItens[__${stat.index}__].valorVenda}">
+
+                                    <td>
+                                        <button class="btn btn-danger" type="submit"
+                                        name="removeitem" th:value="__${stat.index}__">Remover</button>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Novo intem de venda
+                        </h5>
+                        <div class="fom-group">
+                            <label for="cbproduto">Produto</label>
+                            <!--ComboBox Windows Forms-->
+                            <select class="form-select" id="cdproduto" th:field="${novoItem.produto}">
+                                <option th:each="umproduto : ${listaProdutos}" th:value="${umproduto.id}" th:text="${umproduto.nome}">
+                            </option>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtQuantidade">Quantidade</label>
+                            <input type="number" id="txtQuantidade" 
+                            class="form-control" th:field="${novoItem.quantidade}">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtValorVenda">Valor da venda</label>
+                            <input type="number" id="txtValorVenda"
+                            class="form-control" th:field="${novoItem.valorVenda}"> <!--Aqui usasse cifrão pelo fato delas estar vinculada a uma outra classe "pai"-->
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary" name="incitem">Adicionar Item</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" name="save">Enviar</button>
+            </form>
+        </main>
+        <footer th:include="layout :: footer"></footer>
+        <script th:src="@{/script.js}"></script>
+    </body>
+</html>

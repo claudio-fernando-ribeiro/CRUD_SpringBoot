@@ -16,6 +16,8 @@
                         <th>Nome</th>
                         <th>Endereço</th>
                         <th>Sexo</th>
+                        <th>Data Nascimento</th>
+                        <th>Cidade</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -25,6 +27,11 @@
                         <td th:text="${umCliente.nome}"></td>
                         <td th:text="${umCliente.endereco}"></td>
                         <td th:text="${umCliente.sexo}"></td>
+                        <td th:if="${umCliente.dataNascimento}"
+                            th:text="${#dates.format(umCliente.dataNascimento, 'dd/MM/yyyy')}"></td><!--o datas.format formata a minha data na tela, mas não devo esquecer de colocar o padrão "@Temporal" e "DataTimeFormat" na entidade do Cliente (nesse caso)-->
+                        <td th:unless="${umCliente.dataNascimento}">Não informada</td>
+                        <td th:text="${umCliente.cidadeResidencia?.nome}"></td>
+                        <!--umCliente.cidadeResidencia?.nome - a "?" informa o spring que o dado pode ser "null", e impede que a aplicação seja quebrada, caso o dado não conste no banco de dados.-->
                         <td>
                             <a th:href="@{'/clientes/alterar/' + ${umCliente.id}}" class="btn btn-warning">Alterar</a>
                             <button class="btn btn-danger js-delete" th:data-id="${umCliente.id}">Excluir</button>
@@ -35,7 +42,7 @@
 
         </main>
 
-        <div class="modal" tabindex="-1" id="modalcliente">
+        <div class="modal" tabindex="-1" id="modalcliente"><!--modal no bootstrap é o que faz aparecer uma tela de confirmação-->
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">

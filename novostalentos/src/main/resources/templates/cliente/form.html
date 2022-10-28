@@ -6,20 +6,49 @@
         <body>
             <nav th:replace="layout :: menu"></nav> <!--replace substitui totalmente-->
             <main class="container">
-                <form th:action="@{/clientes/(form)}" method="POST" th:object="${cliente}"> <!--Action é para onde vai nossa informação, nesse caso vai para o controlador dos clientes, essa é uma linguagem vinculada ao thymeleaf / th:object é como se eu dissese que ele vai receber algo que é {cliente}-->
+                <form th:action="@{/clientes/(form)}" 
+                method="POST" th:object="${cliente}"> <!--Action é para onde vai nossa informação, nesse caso vai para o controlador dos clientes, essa é uma linguagem vinculada ao thymeleaf / th:object é como se eu dissese que ele vai receber algo que é {cliente}-->
+                
                     <input type="hidden" th:field="*{id}"> <!--Aqui eu escondo a opção do usuário, de forma que consigo manter o mesmo cliente pelo id, sem inserir um novo.-->
                     <div class="form-group">
                         <label for="txtnome">Nome: </label> <!--th:field, informo que esse elemento {}, é parte de um todo, no caso, o nome é parte de um cliente-->
                         <input type="text" th:field="*{nome}" class="form-control" id="txtnome">
+                        <p th:if="${#fields.hasErrors('nome')}"
+                        th:errors="*{nome}"
+                        class="alert alert-danger"></p>
                 </div>
                 <div class="form-group">
                     <label for="txtendereco">Endereço:</label>
                     <input type="text" th:field="*{endereco}" class="form-control" id="txtendereco">
+                    <p th:if="${#fields.hasErrors('endereco')}"
+                    th:errors="*{endereco}"
+                    class="alert alert-danger"></p>
+                </div>
+                <div class="form-group">
+                    <label>Cidade:</label>
+                    <select  class="form-select" th:field="*{cidadeResidencia}">
+                        <option th:each="umaCidade : ${listaCidades}"
+                        th:text="${umaCidade.nome}"
+                        th:value="${umaCidade.id}"> </option>
+                    </select>
+                    <!--Existem duas referência no thymeleaf, a por *, quando uso para me referência a uma classe, nesse caso o Cliente, enquanto o $ é utilizado para me referenciar ao objeto que vira dentro desse bloco de repetição (th:each)-->
                 </div>
                 <div class="form-group">
                     <label for="txtsexo">Sexo:</label>
                     <input type="text" th:field="*{sexo}" class="form-control" id="txtsexo">
+                    <p th:if="${#fields.hasErrors('sexo')}"
+                    th:errors="*{sexo}"
+                    class="alert alert-danger"></p>
                 </div>
+                <div class="form-group">
+                    <label for="txtDataNascimento">Data Nascimento:</label>
+                    <input type="date" th:field="*{dataNascimento}" 
+                    class="form-control" id="txtDataNascimento">
+                    <p th:if="${#fields.hasErrors('dataNascimento')}"
+                    th:errors="*{dataNascimento}"
+                    class="alert alert-danger"></p>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
         </main>

@@ -32,5 +32,11 @@ public class ClienteServiceImpl implements ClienteService{
         }                                         //um novo Cliente. Assim garanto que sempre
         return new Cliente();                     //volta algo.
     }
+
+    @Override
+    public void delete(long id) {
+        repositorio.deleteById(id);
+        
+    }
      
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head th:include="layout :: head"></head>
+
+    <body>
+        <nav th:replace="layout :: menu"></nav>
+        <main class="container">
+            <a href="/vendas/novo" class="btn btn-primary">Novo</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Data da Venda</th>
+                        <th>Comprador</th>
+                        <th>Valor Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="umaVenda : ${listaVendas}">
+                        <td th:text="${umaVenda.data}"></td>
+                        <td th:text="${umaVenda.comprador?.nome}"></td>
+                        <td th:text="${#aggregates.sum(umaVenda.colItens.![getValorFinal])}"></td><!--Esse comando do thymeleaf soma (agrega) os valores-->
+                    </tr>
+                </tbody>
+            </table>   
+        </main>
+        <footer th:include="layout :: footer"></footer>
+    </body>
+</html>
+
+<!--                <tr th:each="umaVenda : ${listaVendas}">
+                    <td th:text="${umaVenda.id}"></td>
+                    <td th:text="${umaVenda.data}"></td>o datas.format formata a minha data na tela, mas não devo esquecer de colocar o padrão "@Temporal" e "DataTimeFormat" na entidade do Cliente (nesse caso)
+                    <td th:text="${umaVenda.comprador?.nome"></td>
+                    <td th:text="${#aggregates.sum(umaVenda.colItens.![getValorFinal])}"></td>
+                </tr>
+                    <td>
+                        <a th:href="@{'/produtos/alterar/' + ${umProduto.id}}" class="btn btn-warning">Alterar</a>
+                        <button class="btn btn-danger js-delete" th:data-id="${umProduto.id}">Excluir</button>
+                    </td>
+                </tr> -->

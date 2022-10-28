@@ -41,6 +41,10 @@ public class CidadeController {
         var umaCidade = service.findById(id);
         return new ModelAndView("cidade2/form", "cidade", umaCidade);
     }
-}
-    
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") long id){
+        service.delete(id);
 
+        return new ModelAndView("redirect:/cidades");
+    }
+}

@@ -15,6 +15,8 @@ public class Cidade {
     private long id;
     @Column(length = 1000, nullable = false)//Ele é opcional, para personalizar a aplicação.
     private String nome;
+
+    
     public long getId() {
         return id;
     }
@@ -28,4 +30,7 @@ public class Cidade {
         this.nome = nome;
     }
     
+    public String toString(){
+        return getNome();
+    }
 }
