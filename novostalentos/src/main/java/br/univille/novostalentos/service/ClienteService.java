@@ -8,4 +8,5 @@ public interface ClienteService { //A interface serve quando eu criar um padrão
     Cliente save(Cliente cliente);
     Cliente findById(long id);
     void delete(long id);
+    List<Cliente> findByNome(String nome);
 }

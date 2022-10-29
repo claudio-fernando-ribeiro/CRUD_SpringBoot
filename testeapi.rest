@@ -1,0 +1,42 @@
+###Retorna todos os objetos clientes
+GET http://localhost:8080/api/v1/clientes 
+
+### Retorna um único objeto cliente
+GET http://localhost:8080/api/v1/clientes/1
+
+### Busca por nome, usando algo semelhante ao like do MySQL
+GET http://localhost:8080/api/v1/clientes/nome/ze
+
+### Quando pesquisa tem várias combinações, inclusive algumas que não existem.
+GET http://localhost:8080/api/v1/clientes?nome=ze
+
+###
+GET http://localhost:8080/api/v1/clientes/?nome=ze
+
+### Enviar novo cliente (POST)
+POST http://localhost:8080/api/v1/clientes
+Content-Type: application/json
+
+{
+  "nome": "Huguinho",
+  "endereco": "Rua lalala",
+  "sexo": "Masculino",
+  "dataNascimento": "2022-10-03",
+  "cidadeResidencia": {
+    "id": 2
+    }
+}
+
+### Alterar um cliente - Método PUT e o id no final da request.
+PUT http://localhost:8080/api/v1/clientes/5
+Content-Type: application/json
+
+{
+  "nome": "jorginho",
+  "endereco": "Rua bebebebe",
+  "sexo": "Masculino",
+  "dataNascimento": "2022-02-03",
+  "cidadeResidencia": {
+    "id": 2
+    }
+}

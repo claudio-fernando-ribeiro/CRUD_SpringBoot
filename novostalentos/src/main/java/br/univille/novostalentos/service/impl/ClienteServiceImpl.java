@@ -38,5 +38,10 @@ public class ClienteServiceImpl implements ClienteService{
         repositorio.deleteById(id);
         
     }
+
+    @Override 
+    public List<Cliente> findByNome(String nome) { //Esse método foi criado para ajudar na implementação da API, quando buscar por nomes (Like no MySQL). Ela não possui nenhuma ligação direta com o restante da aplicação
+        return repositorio.findByNomeIgnoreCaseContaining(nome);
+    }
      
 }
