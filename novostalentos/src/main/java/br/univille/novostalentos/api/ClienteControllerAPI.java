@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,20 +62,29 @@ public class ClienteControllerAPI {
     }
 
     @PutMapping("/{id}") //Esse é utilizado pela API para alterar um cliente no banco de dados. 
-    public ResponseEntity<Cliente> uptade(@PathVariable long id, @RequestBody Cliente clienteAlterado){
+    public ResponseEntity<Cliente> update(@PathVariable long id, @RequestBody Cliente clienteAlt){
         var clienteAntigo = service.findById(id);
         if(clienteAntigo.getId() == 0){
             return ResponseEntity.notFound().build();
         }
-        clienteAntigo.setNome(clienteAlterado.getNome());
-        clienteAntigo.setEndereco(clienteAlterado.getEndereco());
-        clienteAntigo.setCidadeResidencia(clienteAlterado.getCidadeResidencia());
-        clienteAntigo.setDataNascimento(clienteAlterado.getDataNascimento());
-        clienteAntigo.setSexo(clienteAlterado.getSexo());        
-        
+        clienteAntigo.setNome(clienteAlt.getNome());
+        clienteAntigo.setEndereco(clienteAlt.getEndereco());
+        clienteAntigo.setCidadeResidencia(clienteAlt.getCidadeResidencia());
+        clienteAntigo.setDataNascimento(clienteAlt.getDataNascimento());
+        clienteAntigo.setSexo(clienteAlt.getSexo());
+
         service.save(clienteAntigo);
+            return new ResponseEntity<Cliente>(clienteAntigo, HttpStatus.OK);
+        }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Cliente> delete(@PathVariable long id){
+        var clienteAntigo = service.findById(id);
+        if(clienteAntigo.getId() == 0){
+            return ResponseEntity.notFound().build();
+        }
+        service.delete(id);
         return new ResponseEntity<Cliente>(clienteAntigo, HttpStatus.OK);
     }
-
-    
+        
 }

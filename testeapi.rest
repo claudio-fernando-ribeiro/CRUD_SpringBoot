@@ -32,11 +32,16 @@ PUT http://localhost:8080/api/v1/clientes/5
 Content-Type: application/json
 
 {
-  "nome": "jorginho",
-  "endereco": "Rua bebebebe",
+  "nome": "Jorginho",
+  "endereco": "Rua lululu",
   "sexo": "Masculino",
-  "dataNascimento": "2022-02-03",
+  "dataNascimento": "2022-10-03T00:00:00.000+00:00",
   "cidadeResidencia": {
     "id": 2
-    }
+  }
 }
+
+### Remover um cliente 
+DELETE http://localhost:8080/api/v1/clientes/8
+
+

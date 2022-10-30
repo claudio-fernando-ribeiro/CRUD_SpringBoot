@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,7 +28,6 @@ public class Cliente {
     @NotBlank(message = "Campo nome não pode ser em branco") //Ele não permite que o campo seja em branco, inclusive inserindo uma mensagem
     private String nome;
     @Column(length = 3000)
-    @NotNull(message = "Campo endereço não pode ser em branco")
     private String endereco;
     @Pattern(regexp = "Masculino|Feminino", flags = Pattern.Flag.CANON_EQ, message = "Valor inválido, utilize Masculino ou Feminino")  //Ele permite que você use uma linguagem chamada expressões de usuários para escrever uma regra
     private String sexo;
